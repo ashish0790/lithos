@@ -244,7 +244,7 @@ const SpecularButton: React.FC<SpecularButtonProps> = ({
 
       idleAngle += p.speed * dt;
       const steer = p.followMouse && pointerAngle != null && (!p.autoAnimate || proximityT > 0);
-      const target = steer ? pointerAngle : idleAngle;
+      const target: number = steer && pointerAngle !== null ? pointerAngle : idleAngle;
       const diff = ((target - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
       angle += diff * (1 - Math.exp(-dt * 7));
 
@@ -270,7 +270,8 @@ const SpecularButton: React.FC<SpecularButtonProps> = ({
       ro.disconnect();
       window.removeEventListener("pointermove", onPointerMove);
       if (gl.canvas.parentNode === fx) fx.removeChild(gl.canvas);
-      (gl.getExtension("WEBGL_lose_context") as { loseContext?: () => void } | null)?.loseContext();
+      const ext = gl.getExtension("WEBGL_lose_context") as { loseContext?: () => void } | null;
+      ext?.loseContext?.();
     };
   }, []);
 
