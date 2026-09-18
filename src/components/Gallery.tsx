@@ -124,7 +124,7 @@ function FeaturedTile({
 
 function SmallTile({ tile }: { tile: (typeof tiles)[number] }) {
   return (
-    <article className="group relative overflow-hidden bg-surface-container-low hover-lift cursor-pointer flex-1 h-[240px] md:h-[338px]">
+    <article className="group relative overflow-hidden bg-surface-container-low hover-lift cursor-pointer w-full h-[240px] md:h-[338px] min-h-[240px] md:min-h-[338px]">
       <Image
         src={tile.image}
         alt={tile.alt}
