@@ -1,7 +1,4 @@
-"use client";
-
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { categories, tiles, type Category } from "@/data/tiles";
 
 type FilterValue = Category | "All";
@@ -101,13 +98,11 @@ function FeaturedTile({
 }) {
   return (
     <article className="group col-span-1 md:col-span-8 relative overflow-hidden bg-surface-container-low hover-lift cursor-pointer h-[500px] md:h-[700px]">
-      <Image
+      <img
         src={tile.image}
         alt={tile.alt}
-        fill
-        sizes="(min-width: 768px) 66vw, 100vw"
-        className="object-cover"
-        priority
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
       />
       <div className="absolute inset-0 image-overlay flex flex-col justify-end p-8">
         <span className="font-label-caps text-label-caps text-alabaster uppercase tracking-widest mb-2 opacity-80">
@@ -125,12 +120,11 @@ function FeaturedTile({
 function SmallTile({ tile }: { tile: (typeof tiles)[number] }) {
   return (
     <article className="group relative overflow-hidden bg-surface-container-low hover-lift cursor-pointer w-full h-[240px] md:h-[338px] min-h-[240px] md:min-h-[338px]">
-      <Image
+      <img
         src={tile.image}
         alt={tile.alt}
-        fill
-        sizes="(min-width: 768px) 33vw, 100vw"
-        className="object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
       />
       <div className="absolute inset-0 image-overlay flex flex-col justify-end p-6">
         <span className="font-label-caps text-label-caps text-alabaster uppercase tracking-widest mb-1 opacity-80">
@@ -151,12 +145,11 @@ function FloorTile({ tile }: { tile: (typeof tiles)[number] }) {
   return (
     <article className="group cursor-pointer">
       <div className="overflow-hidden bg-surface-container-low h-[400px] mb-6 relative">
-        <Image
+        <img
           src={tile.image}
           alt={tile.alt}
-          fill
-          sizes="(min-width: 768px) 33vw, 100vw"
-          className="object-cover hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+          loading="lazy"
         />
       </div>
       <div className="px-2">
